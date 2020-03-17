@@ -1,0 +1,35 @@
+<form class="edit-user" [formGroup]="editUser" style="margin-top:15px;margin-left:10px;">
+    <div style="display:flex;">
+        <mat-card-title style="flex:auto;">Edit your details</mat-card-title>
+        <span style="flex:0.1;">
+            <img [src]="closeIcon" alt="" style="width:20px;height:20px;" (click)="closeDialog()">
+        </span>
+    </div>
+    <br>
+    <div style="margin-top:10px;">
+        <div style="margin-bottom:25px;">
+            <input #imgInput hidden="true" type="file" onclick="this.value=null" (change)="imgInputChange($event)" accept=".jpg,.png,.gif"/>
+            <button mat-raised-button color="accent" style="margin-top:5px;" (click)="imgInput.click()">Upload Image</button>
+            <span style="margin-left:20px;">{{ fileName }}</span>
+        </div>
+        <mat-form-field appearance="fill" class="firstname">
+            <mat-label>First Name</mat-label>
+            <input matInput class="first-name" value="{{firstname}}" formControlName="firstname" />
+        </mat-form-field>
+        &nbsp;&nbsp;
+        <mat-form-field appearance="fill" class="lastname">
+            <mat-label>Last Name</mat-label>
+            <input matInput class="last-name" value="{{lastname}}" formControlName="lastname" />
+        </mat-form-field>
+        <mat-form-field class="country" style="margin-top:5px;">
+            <mat-label>Country</mat-label>
+            <mat-select [value]="country" formControlName="country">
+                <mat-option *ngFor="let country of countries" [value]="country.name">
+                {{ country.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br><br>
+        <button mat-raised-button type="button" (click)="submitEdits(editUser)" style="background-color:#ff5959;margin-top:5px;">Submit</button>
+    </div>
+</form>
